@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.aquarist-labs.io/name: {{ .Chart.Name }}
+    helm.sh/chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.aquarist-labs.io/name: {{ .Chart.Name }}
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app.aquarist-labs.io/name: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: >
+            '{{ .Values.imageRegistry }}/{{ .Chart.Name }}
+            :{{ .Values.imageTag }}'
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          args:
+            - "--rgw-backend-store"
+            - "${RGW_BACKEND_STORE}"
+            - "--debug-rgw"
+            - "${DEBUG_RGW}"
+          ports:
+            - containerPort: 7480
+          envFrom:
+            - configMapRef:
+                name: s3gw-config
+            - secretRef:
+                name: s3gw-secret
+          volumeMounts:
+            - name: s3gw-lh-store
+              mountPath: /data
+      volumes:
+        - name: s3gw-lh-store
+          persistentVolumeClaim:
+{{- if not .Values.pvc }}
+            claimName: s3gw-pvc
+{{- else }}
+            claimName: {{ .Values.pvc }}
+{{- end }}

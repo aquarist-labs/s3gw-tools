@@ -1,0 +1,15 @@
+{{ if not .Values.pvc }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: s3gw-pvc
+  namespace: {{ .Release.Namespace }}
+spec:
+  storageClassName: longhorn-single
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+{{ end }}

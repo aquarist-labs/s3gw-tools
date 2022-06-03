@@ -1,0 +1,23 @@
+---
+apiVersion: v2
+name: s3gw
+version: 0.1.0
+kubeVersion: ">=1.14"
+description: |
+  Standalone S3-compatible gateway based on Ceph RGW using a non-RADOS storage
+  backend.
+type: application
+keywords:
+  - storage
+  - s3
+sources:
+  - https://github.com/aquarist-labs/s3gw-core
+  - https://github.com/aquarist-labs/ceph
+maintainers:
+  - name: Moritz Röhrich
+    email: moritz.rohrich@suse.com
+    url: https://suse.com
+appVersion: "latest"
+deprecated: false
+annotations:
+  app.aquarist-labs.io/name: s3gw
