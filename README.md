@@ -60,7 +60,7 @@ In order to run the Docker container:
 docker run -p 7480:7480 localhost/s3gw
 ```
 
-For more information on building and running a container, please read our [guide](./build/) on building and running
+For more information on building and running a container, please read our [guide](./build/).
 
 # 🖥️ Developing the S3 Gateway
 
