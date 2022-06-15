@@ -1,3 +1,5 @@
+# 📦 How to build your own containers
+
 ## Building the s3gw container image
 
 This documentation will guide you through the several steps to build the
