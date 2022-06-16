@@ -13,23 +13,14 @@ applications.
 
 # Table of Contents
 
+- [s3gw](#s3gw)
+- [Table of Contents](#table-of-contents)
 - [Roadmap](#---roadmap)
-  * [Project board](#project-board)
-- [Quick start](#---quick-start)
+- [Quickstart](#---quickstart)
   * [Helm chart](#helm-chart)
   * [Docker](#docker)
-- [Developing the S3 Gateway](#----developing-the-s3-gateway)
-  * [Introduction](#introduction)
-  * [Requirements](#requirements)
-  * [Running the Gateway](#running-the-gateway)
-- [Containers](#---containers)
-  * [Building the s3gw container image](#building-the-s3gw-container-image)
-  * [Building the s3gw-UI image](#building-the-s3gw-ui-image)
-  * [Building a K3s & K8s environment running s3gw with Longhorn](#building-and-running-a-complete-environment)
-- [Repositories](#repositories)
-- [Reporting an issue](#reporting-an-issue)
-- [Community](#---community)
 - [License](#license)
+- [Further reading](#---further-reading)
 
 
 # 🛣 Roadmap
@@ -110,7 +101,9 @@ limitations under the License.
 - [How to build your own containers](./docs/build#---how-to-build-your-own-containers)
   * [Building the s3gw container image](./docs/build#building-the-s3gw-container-image)
   * [Building the s3gw-UI image](./docs/build#building-the-s3gw-ui-image)
-  * [Building a K3s & K8s environment running s3gw with Longhorn](#building-a-k3s---k8s-environment-running-s3gw-with-longhorn)
+- [Building a K3s & K8s environment running s3gw with Longhorn](./docs/env.md#building-a-k3s---k8s-environment-running-s3gw-with-longhorn)
+  * [K3s Setup](./docs/env-k3s.md)
+  * [K8s Setup](./docs/env-k8s.md)
 - [S3 API compatibility table](./docs/s3-compatibility-table)
 - [S3GW Repositories](#s3gw-repositories)
 - [Contributing](./docs/contributing.md#contributing)
