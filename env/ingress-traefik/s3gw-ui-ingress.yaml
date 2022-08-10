@@ -1,10 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-api-prefix
+  namespace: s3gw-system
+spec:
+  stripPrefix:
+    prefixes:
+      - /api
+    forceSlash: false
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: s3gw-ui-ingress
   namespace: s3gw-system
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: s3gw-system-cors-header@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: s3gw-system-cors-header@kubernetescrd,s3gw-system-strip-api-prefix@kubernetescrd
 spec:
   tls:
     - hosts:
@@ -21,6 +32,13 @@ spec:
                 name: s3gw-ui-service
                 port:
                   number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: s3gw-service
+                port:
+                  number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -28,7 +46,7 @@ metadata:
   name: s3gw-ui-no-tls-ingress
   namespace: s3gw-system
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: s3gw-system-cors-header@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: s3gw-system-cors-header@kubernetescrd,s3gw-system-strip-api-prefix@kubernetescrd
 spec:
   rules:
     - host: s3gw-ui-no-tls.local
@@ -39,5 +57,12 @@ spec:
             backend:
               service:
                 name: s3gw-ui-service
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: s3gw-service
                 port:
                   number: 80
