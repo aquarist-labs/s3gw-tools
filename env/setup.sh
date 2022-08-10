@@ -77,19 +77,15 @@ function show_ingresses() {
   echo "                          https://s3gw.local:30443"
   echo "                          http://s3gw-no-tls.local"
   echo "                          http://s3gw-no-tls.local:30080"
+  echo "                          http://s3gw-ui-no-tls.local/api"
+  echo "                          http://s3gw-ui-no-tls.local:30080/api"
+  echo "                          https://s3gw-ui.local/api"
   echo "                          https://s3gw-ui.local:30443/api"
   echo "                          https://s3gw-ui-no-tls.local:30443/api"
   echo "s3gw-ui available at:     http://s3gw-ui-no-tls.local"
   echo "                          http://s3gw-ui-no-tls.local:30080"
   echo "                          https://s3gw-ui.local"
   echo "                          https://s3gw-ui.local:30443"
-  echo ""
-  echo "Note, the UI will not be able to access the RGW AdminOps API when"
-  # Check https://github.com/aquarist-labs/s3gw/issues/31 to get more
-  # information about the CORS issues.
-  echo "using HTTPS and self-signed certificates because of CORS issues."
-  echo "To workaround that, please open the URL https://s3gw.local in the"
-  echo "browser and accept the SSL certificate before accessing the UI."
   echo ""
 }
 
