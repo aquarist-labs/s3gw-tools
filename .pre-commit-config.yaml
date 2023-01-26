@@ -25,6 +25,7 @@ repos:
             assets/images/.*
           )$
       - id: git-check
+      - id: shellcheck
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.1.0
